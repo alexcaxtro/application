@@ -8,9 +8,7 @@
     <th class="info" style="font-size:40px"><center>Módulo para integración Clave Única</center></th>
     </thead>
     </table>
-  
     <!-- Button para generar Token--> 
-
 <table id="myTable" class="table table-bordered table-striped table-condensed table-responsive table-hover">  
     <tbody>
     <td><center><div class="col-md-12 ">
