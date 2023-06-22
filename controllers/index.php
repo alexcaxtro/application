@@ -23,6 +23,16 @@ class Index extends CI_Controller {
                     );
         $this->load->view("header");
         $this->load->view("vista_token",$data);
-    }    
+    } 
+    
+    public function autenticar(){
+        $data= array(
+                        'token'=> bin2hex(openssl_random_pseudo_bytes(16)), 
+                        'fecha_de_sesion' => date("d-m-Y"),
+                        'hora_de_sesion' => date("h:i:s"),
+                    );
+        $this->load->view("header");
+        $this->load->view("vista_autenticar",$data);
+    }
 }
 ?>

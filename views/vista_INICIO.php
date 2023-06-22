@@ -18,7 +18,6 @@
 </div>
 </tbody>
 </table>    
-<!--
 <table id="myTables" class="table table-bordered table-striped table-condensed table-responsive table-hover">  
     <tbody>
     <div class="form-group">    
@@ -30,7 +29,6 @@
     </div>
     </tbody>
 </table>
--->
 </div>
 </tbody>
 </table>
