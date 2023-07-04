@@ -10,7 +10,7 @@ class Model_paciente extends CI_Model {
  
 
     public function listar_paciente() {
-      $this->db->select("P.NOMBRE AS NOMBRE, P.EDAD AS EDAD, P.DIAGNOSTICO AS DIAGNOSTICO", false);
+      $this->db->select("P.ID_PACIENTE AS ID_PACIENTE, P.NOMBRE AS NOMBRE, P.EDAD AS EDAD, P.DIAGNOSTICO AS DIAGNOSTICO", false);
       $this->db->from("SALUD.CU_PACIENTE P");
       $query = $this->db->get();
         if($query->num_rows() >= 1){    
@@ -38,9 +38,16 @@ class Model_paciente extends CI_Model {
             return false;
         }   
   }
+    public function borrar($id){
+    $this->db->delete('SALUD.CU_PACIENTE', array('id' => $id));  
+   }
 
-
-
+  function get_paciente_by_id($id)
+  {
+      $this->db->where('id', $id);
+      $query = $this->db->get('PACIENTE');
+      return $query->result_array();
+  }
 
 }
 
