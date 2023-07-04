@@ -36,13 +36,26 @@
 
 <table id="myTables" class="table table-bordered table-striped table-condensed table-responsive table-hover">  
     <tbody>
-    <div class="form-group">    
-    <td><center>
-        <div class="col-md-12 ">
-            <button type="button" class="btn btn-success btn-lg col-lg-12" onClick="location.href='<?php echo site_url('/index/listar_paciente/')?>'">Pacientes</button>
+        <div class="form-group">    
+            <td><center>
+                <div class="col-md-12 ">
+                <button type="button" class="btn btn-success btn-lg col-lg-12" onClick="location.href='<?php echo site_url('/index/listar_paciente/')?>'">Pacientes</button>
+            </div>
+            </td>
         </div>
-    </td>
     </div>
+    </tbody>
+</table>
+
+<table id="myTables" class="table table-bordered table-striped table-condensed table-responsive table-hover">  
+    <tbody>
+        <div class="form-group">    
+            <td><center>
+                <div class="col-md-12 ">
+                <button type="button" class="btn btn-success btn-lg col-lg-12" onClick="location.href='<?php echo site_url('/index/crear_paciente/')?>'">Ingresar Pacientes</button>
+            </div>
+            </td>
+        </div>
     </div>
     </tbody>
 </table>

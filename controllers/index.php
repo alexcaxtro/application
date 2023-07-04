@@ -30,14 +30,31 @@ class index extends CI_Controller {
         $this->load->view('vista_paciente_list');
     }
 
-    // public function autenticar(){
-    //     $data= array(
-    //                     'token'=> bin2hex(openssl_random_pseudo_bytes(16)), 
-    //                     'fecha_de_sesion' => date("d-m-Y"),
-    //                     'hora_de_sesion' => date("h:i:s"),
-    //                 );
-    //     $this->load->view("header");
-    //     $this->load->view("vista_autenticar",$data);
-    // }    
+    public function autenticar(){
+        $data= array(
+                        'token'=> bin2hex(openssl_random_pseudo_bytes(16)), 
+                        'fecha_de_sesion' => date("d-m-Y"),
+                        'hora_de_sesion' => date("h:i:s"),
+                    );
+        $this->load->view("header");
+        $this->load->view("vista_autenticar",$data);
+    }
+    
+    public function crear_paciente() {
+        $this->load->view('header');
+        $this->load->view('vista_crear_paciente');
+    } 
+
+    public function guardar_paciente(){
+        $id = $this->input->post('id');
+        $nombre = $this->input->post('nombre'); 
+        $edad = $this->input->post('edad');
+        $diagnostico = $this->input->post('diagnostico');
+        $hospital = $this->input->post('hospital');
+        
+        $graba = $this->model_paciente->insertar($id, $nombre, $edad, $diagnostico, $hospital);
+        redirect("/index/listar_paciente/");
+    }
+    
 }
 
