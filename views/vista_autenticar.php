@@ -8,6 +8,14 @@
     <title>Mi Espacio Hospital Curicó</title>
 </head>
 <body>
+   <!-- return button to menu -->
+   <div class="row">
+    <div class="col-md-10"></div>
+    <div class="col-6 col-md-2">
+    <button type="button" class="btn btn-secondary btn-lg col-lg-12" onClick="location.href='<?php echo site_url('/index/')?>'">Regresar listado</button>
+    </div>
+  </div>
+
     <div class="container ">
       <div class="bg-primary text-white d-flex rounded">
         <h1 class="mx-auto text-center" style="width: 960px;" >Hospital de San Juan de Dios de Curicó</h1>
