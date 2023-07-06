@@ -17,7 +17,7 @@
 
     <form action="<?php echo site_url('index/guardar_paciente')?>" method="POST" enctype="multipart/form-data">
     <div class="form-group">
-        <label for="id">Nombre:</label>
+        <label for="id">Id</label>
         <input type="number" class="form-control" id="id"  placeholder="ID" name="id">
     </div>    
     <div class="form-group">

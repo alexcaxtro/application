@@ -55,14 +55,9 @@ class index extends CI_Controller {
         $graba = $this->model_paciente->insertar($id, $nombre, $edad, $diagnostico, $hospital);
         redirect("/index/listar_paciente/");
     }
-    public function detalle_paciente($id){
-        $data= array(
-            'id'=> $this->input->get('id'), 
-            'nombre' => $this->input->get('nombre'),
-            'edad' => $this->input->get('edad'),
-            'diagnostico' => $this->input->get('diagnostico'),
-            'hospital' => $this->input->get('hospital'),
-        );
+    public function detalle_paciente(){
+        $id = $this->input->get('id');
+        $data ['paciente'] = $this->model_paciente->get_paciente_by_id($id);
         $this->load->view('header', $data);
         $this->load->view('vista_detalle_paciente');
     }

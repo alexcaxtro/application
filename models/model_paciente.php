@@ -29,7 +29,7 @@ class Model_paciente extends CI_Model {
       $this->db->set("EDAD", $edad);
       $this->db->set("DIAGNOSTICO", $diagnostico);
       $this->db->set("HOSPITAL", $hospital);
-    // Insertar el arreglo en la tabla pacientes
+  
       $this->db->insert("SALUD.CU_PACIENTE");
       if($this->db->affected_rows() == 1){      
         return true;
@@ -39,14 +39,21 @@ class Model_paciente extends CI_Model {
         }   
   }
     public function borrar($id){
-    $this->db->delete('SALUD.CU_PACIENTE', array('id' => $id));  
+    $this->db->delete('SALUD.CU_PACIENTE', array('ID_PACIENTE' => $id));  
    }
 
   function get_paciente_by_id($id)
   {
-      $this->db->where('id', $id);
-      $query = $this->db->get('PACIENTE');
-      return $query->result_array();
+      $this->db->select("ID_PACIENTE, NOMBRE, EDAD, DIAGNOSTICO, HOSPITAL");
+      $this->db->from("SALUD.CU_PACIENTE");
+      $this->db->where('ID_PACIENTE', $id);
+      $query = $this->db->get();
+      if($this->db->affected_rows() == 1){      
+        return true;
+        }
+        else{
+            return false;
+        }    
   }
 
 }

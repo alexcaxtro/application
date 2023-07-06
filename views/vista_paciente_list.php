@@ -40,10 +40,11 @@
             <td><?php echo $p->EDAD?></td>
             <td><?php echo $p->DIAGNOSTICO?></td>
             <td style="width:200px">
-            <button type="button" class="btn btn-info" onClick="location.href='<?php echo site_url('/index/detalle_paciente')?>'">Ver</button>
-            <button type="button" class="btn btn-warning">Editar</button>
-            <button type="button" class="btn btn-danger" onClick="location.href='<?php echo site_url('/index/borrar?id=')?>'">Borrar</button>
-            <!-- <a href="<?php echo site_url();?>index/borrar?id=<?php echo $paciente['id'];?>" class="button">Eliminar</a> -->
+            <!-- <button type="button" class="btn btn-info" onClick="location.href='<?php echo site_url('/index/detalle_paciente')?>'">Ver</button> -->
+            <!-- <button type="button" class="btn btn-warning">Editar</button> -->
+            <!-- <button type="button" class="btn btn-danger" onClick="location.href='<?php echo site_url('/index/borrar?id')?>'<?php echo $p->ID_PACIENTE;?>">Borrar</button> -->
+            <a href="<?php echo site_url();?>/index/detalle_paciente?id=<?php echo $p->ID_PACIENTE;?>" class="button">Ver</a>
+            <a href="<?php echo site_url();?>/index/borrar?id=<?php echo $p->ID_PACIENTE;?>" class="button">Eliminar</a>
             </td>
           </tr>
         <?php }?> 
