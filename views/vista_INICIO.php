@@ -60,3 +60,28 @@
     </tbody>
 </table>
 
+<table id="myTables" class="table table-bordered table-striped table-condensed table-responsive table-hover">  
+    <tbody>
+        <div class="form-group">    
+            <td><center>
+                <div class="col-md-12 ">
+                <button type="button" class="btn btn-success btn-lg col-lg-12" onClick="location.href='<?php echo site_url('/index/interconsulta_inicio/')?>'">Interconsulta</button>
+            </div>
+            </td>
+        </div>
+    </div>
+    </tbody>
+</table>
+
+<table id="myTables" class="table table-bordered table-striped table-condensed table-responsive table-hover">  
+    <tbody>
+        <div class="form-group">    
+            <td><center>
+                <div class="col-md-12 ">
+                <button type="button" class="btn btn-success btn-lg col-lg-12" onClick="location.href='<?php echo site_url('/index/interconsulta_segui_inicio/')?>'">Seguimiento Interconsulta</button>
+            </div>
+            </td>
+        </div>
+    </div>
+    </tbody>
+</table>

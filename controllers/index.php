@@ -7,6 +7,7 @@ class index extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model("model_paciente");
+        $this->load->model("model_interconsulta");
     }
     
     public function index(){
@@ -81,7 +82,68 @@ class index extends CI_Controller {
     }
     }
 
-    
+    public function interconsulta_inicio() {
+        $this->load->view('header');
+        $this->load->view('vista_interconsulta');
+    }
+
+    public function interconsulta_segui_inicio() {
+        $this->load->view('header');
+        $this->load->view('vista_segui_interconsulta');
+    }
+    public function interconsulta_segui() {
+        $fecha= array('fecha_de_inter' => date("d-m-Y"));
+        $rut = $this->input->post('rut');
+        $buscar = $this->model_interconsulta->busca_rut($rut);
+        if($buscar){
+        $data ["datos"] = $this->model_interconsulta->busca_rut($rut);
+        $this->load->view('header');
+        $this->load->view('vista_interconsulta_segui', $fecha);
+        }
+    }
+
+
+    public function view_output() {
+        $this->load->view('header');
+        $this->load->view('view_output');
+    }
+
+
+    public function buscar_datos_paciente() {
+        $fecha= array('fecha_de_inter' => date("d-m-Y"));
+        $rut = $this->input->post('rut');
+        $buscar = $this->model_interconsulta->busca_rut($rut);
+        if($buscar){
+        $data ["datos"] = $this->model_interconsulta->busca_rut($rut);
+        $this->load->view('header', $data);
+        $this->load->view('vista_interconsulta_inicio', $fecha);    
+        }   
+    }
+
+    public function buscar_datos_paciente_segui() {
+        $fecha= array('fecha_de_inter' => date("d-m-Y"));
+        #$rut = $this->input->post('rut');
+        $rut = '26849107';
+        $buscar = $this->model_interconsulta->busca_rut($rut);
+        if($buscar){
+        $data ["datos"] = $this->model_interconsulta->busca_rut($rut);
+        $this->load->view('header', $data);
+        $this->load->view('vista_interconsulta_segui', $fecha);    
+        }   
+    }
+
+    public function guardar_interconsulta() {
+
+    }
+
+
+    public function medicos(){
+        if (isset($_GET['term'])){
+        $q = $_GET['term'];
+        $resultado = $this->model_biopsias->getmedicos($q);
+        echo json_encode($resultado);
+        }
+    }
 
 }
 
