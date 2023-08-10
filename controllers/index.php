@@ -44,32 +44,39 @@ class index extends CI_Controller {
     public function crear_paciente() {
         $this->load->view('header');
         $this->load->view('vista_crear_paciente');
+        
     } 
 
     public function guardar_paciente(){
-        $id = $this->input->post('id');
+        $buscar_last_id = $this->model_paciente->last_id_paciente();
+        foreach($buscar_last_id as $id) {
+            $data = $id->ID_PACIENTE;
+        } 
+        $id = intval($data);
         $nombre = $this->input->post('nombre'); 
         $edad = $this->input->post('edad');
-        $diagnostico = $this->input->post('diagnostico');
         $hospital = $this->input->post('hospital');
-        
-        $graba = $this->model_paciente->insertar($id, $nombre, $edad, $diagnostico, $hospital);
+        $estado = 1;
+        $graba = $this->model_paciente->insertar($id, $nombre, $edad, $hospital, $estado);
         redirect("/index/listar_paciente/");
+        
     }
-    public function detalle_paciente(){
-        $id = $this->input->get('id');
-        $data ['paciente'] = $this->model_paciente->get_paciente_by_id($id);
+    public function detalle_paciente($id){
+        $buscar = $this->model_paciente->ver_paciente($id);
+        if($buscar){
+        $data["paciente"] = $this->model_paciente->ver_paciente($id);
         $this->load->view('header', $data);
-        $this->load->view('vista_detalle_paciente');
+        $this->load->view("vista_detalle_paciente");
+    }
+
     }
     public function actualizar_paciente(){
-        $id = $this->input->post('id');
-        $nombre = $this->input->post('nombre'); 
-        $edad = $this->input->post('edad');
-        $diagnostico = $this->input->post('diagnostico');
-        $hospital = $this->input->post('hospital');  
-        $graba = $this->model_paciente->insertar($id, $nombre, $edad, $diagnostico, $hospital);
-        redirect("/index/listar_paciente/");
+         $id = $this->input->post('id');
+         $nombre = $this->input->post('nombre'); 
+         $edad = $this->input->post('edad');
+         $hospital = $this->input->post('hospital');  
+         $graba = $this->model_paciente->update($id, $nombre, $edad, $hospital);
+         redirect("/index/listar_paciente/");
     }
 
     public function borrar(){
@@ -82,33 +89,6 @@ class index extends CI_Controller {
     }
     }
 
-    public function interconsulta_inicio() {
-        $this->load->view('header');
-        $this->load->view('vista_interconsulta');
-    }
-
-    public function interconsulta_segui_inicio() {
-        $this->load->view('header');
-        $this->load->view('vista_segui_interconsulta');
-    }
-    public function interconsulta_segui() {
-        $fecha= array('fecha_de_inter' => date("d-m-Y"));
-        $rut = $this->input->post('rut');
-        $buscar = $this->model_interconsulta->busca_rut($rut);
-        if($buscar){
-        $data ["datos"] = $this->model_interconsulta->busca_rut($rut);
-        $this->load->view('header');
-        $this->load->view('vista_interconsulta_segui', $fecha);
-        }
-    }
-
-
-    public function view_output() {
-        $this->load->view('header');
-        $this->load->view('view_output');
-    }
-
-
     public function buscar_datos_paciente() {
         $fecha= array('fecha_de_inter' => date("d-m-Y"));
         $rut = $this->input->post('rut');
@@ -120,23 +100,6 @@ class index extends CI_Controller {
         }   
     }
 
-    public function buscar_datos_paciente_segui() {
-        $fecha= array('fecha_de_inter' => date("d-m-Y"));
-        #$rut = $this->input->post('rut');
-        $rut = '26849107';
-        $buscar = $this->model_interconsulta->busca_rut($rut);
-        if($buscar){
-        $data ["datos"] = $this->model_interconsulta->busca_rut($rut);
-        $this->load->view('header', $data);
-        $this->load->view('vista_interconsulta_segui', $fecha);    
-        }   
-    }
-
-    public function guardar_interconsulta() {
-
-    }
-
-
     public function medicos(){
         if (isset($_GET['term'])){
         $q = $_GET['term'];
@@ -144,6 +107,44 @@ class index extends CI_Controller {
         echo json_encode($resultado);
         }
     }
+
+    public function borrar_paciente($id){
+        $buscar = $this->model_paciente->ver_paciente($id);
+        if($buscar){
+        $data["paciente"] = $this->model_paciente->ver_paciente($id);
+        $this->load->view('header', $data);
+        $this->load->view('vista_eliminar_paciente');    
+        }
+    }
+    public function eliminar_paciente(){
+        $id = $this->input->post('id');
+        $estado = 0;
+        $buscar = $this->model_paciente->borrar_paciente($id, $estado);
+         if($buscar){
+        $data["paciente"] = $this->model_paciente->borrar_paciente($id, $estado);
+        $this->load->view('header', $data);
+        redirect("/index/listar_paciente/");
+        }
+    }
+
+    public function respawn_paciente(){
+        $data["paciente"] = $this->model_paciente->listar_paciente();
+        $this->load->view('header', $data);
+        $this->load->view('vista_respawn_paciente');  
+    }
+
+
+    public function revivir_paciente(){
+        $id = $this->input->get('id');
+        $estado = 1;
+        $buscar = $this->model_paciente->revivir_paciente($id, $estado);
+         if($buscar){
+        $data["paciente"] = $this->model_paciente->revivir_paciente($id, $estado);
+        $this->load->view('header', $data);
+        redirect("/index/");
+        }
+    }
+
 
 }
 
