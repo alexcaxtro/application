@@ -145,6 +145,29 @@ class index extends CI_Controller {
         }
     }
 
+    public function calcular_dias(){
+        $fechaActual = date('2023-8-14');
+        #$fechaActual = date('Y-m-d h:i:s');  
+        $fechaSegundos = strtotime($fechaActual);
+        $dia = date( "j", $fechaSegundos);
+        $dia_semana = date( "l", $fechaSegundos);
+        $data["mes"] = date("n", $fechaSegundos);
+        $data["year"] =  date("Y", $fechaSegundos);
+        if ($dia_semana == "Saturday"){
+            $data["dia_entrega"] = $dia+9;
+        
+        }  if ($dia_semana == "Sunday"){
+            $data["dia_entrega"] = $dia+8;
+        }
+        else {
+            $data["dia_entrega"] = $dia+7;
+        }
+        $this->load->view('header', $data);
+        $this->load->view('vista_mostrar_fecha');  
+        
+    }
+
+
 
 }
 

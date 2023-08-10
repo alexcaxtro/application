@@ -127,6 +127,19 @@ Loading(5000).init();
     </div>
     </tbody>
 </table>
+
+<table id="myTables" class="table table-bordered table-striped table-condensed table-responsive table-hover">  
+    <tbody>
+        <div class="form-group">    
+            <td><center>
+            <div class="col-12">
+                <button type="button" class="btn btn-danger btn-lg col-lg-12" onClick="location.href='<?php echo site_url('/index/calcular_dias/')?>'">Calcular</button>
+            </div> 
+            </td>
+        </div>
+    </div>
+    </tbody>
+</table>
 </div>
 
 <hr>
